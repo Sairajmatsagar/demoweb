@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Weather Info</h1>
+    <p id="weather">Fetching...</p>
+
+    <script>
+        async function getWeather() {
+            try {
+                let response = await fetch('https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=London');
+                let data = await response.json();
+                document.getElementById('weather').innerText = `Temperature: ${data.current.temp_c}°C`;
+            } catch (error) {
+                document.getElementById('weather').innerText = "Failed to load weather data";
+            }
+        }
+
+        getWeather(); // Fetch weather on page load
+    </script>
+</body>
+</html>
